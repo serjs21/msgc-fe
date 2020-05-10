@@ -38,6 +38,7 @@ const ReleaseRequests = ({fetchPage, emails, storedPages, onReset, updateStatus,
     if(filter === 'open') {
       const idsToDelete = selectedEmails.map(email => email.id);
       selectEmail([]);
+      setEmailsCollection(emailsCollection.filter(email => !idsToDelete.includes(email.id)));
       deleteEmails(idsToDelete);
     } else {
       selectEmail([]);
