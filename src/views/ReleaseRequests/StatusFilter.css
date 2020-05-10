@@ -1,0 +1,15 @@
+.filter {
+    display: inline-flex;
+    width: 290px;
+    justify-content: space-between;
+    padding: 5px 20px;
+    align-items: center;
+}
+
+.filter-select {
+    width: 200px;
+}
+
+.filter-title {
+    font-weight: 500;
+}

@@ -1,0 +1,31 @@
+.action-button {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    outline: none;
+    margin: 0 5px;
+}
+
+.action-button .action-button-icon {
+    padding-right: 10px;
+}
+
+.action-button:hover {
+    background: #a1dff2;
+    cursor: pointer;
+    transition: .2s ease-in;
+}
+
+.disabled {
+    color: #c6c6c6;
+}
+
+.disabled:hover {
+    background: #b3b3b385;
+    color: #eae8e8;
+    cursor: not-allowed;
+}
+
+.danger:hover {
+    background: #ffa2a2;
+}

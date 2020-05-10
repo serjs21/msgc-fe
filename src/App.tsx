@@ -1,25 +1,40 @@
 import React from 'react';
-import logo from './logo.svg';
+import {ReleaseRequests, QuarantinedEmails} from './views'
+import store from "./store";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+  Redirect,
+} from "react-router-dom";
+import {Provider} from 'react-redux';
+import 'antd/dist/antd.css';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Router>
+        <div className='main-app'>
+          <div className='navigation'>
+            <NavLink to="/release_requests" className="option" activeClassName="selected">Release
+              Requests</NavLink>
+            <NavLink to="/quarantined_emails" className="option" activeClassName="selected">Quarantined
+              Emails</NavLink>
+          </div>
+          <Switch>
+            <Route path="/release_requests">
+              <ReleaseRequests/>
+            </Route>
+            <Route path="/quarantined_emails">
+              <QuarantinedEmails/>
+            </Route>
+            <Route render={() => <Redirect to="/release_requests"/>}/>
+          </Switch>
+        </div>
+      </Router>
+    </Provider>
   );
 }
 
