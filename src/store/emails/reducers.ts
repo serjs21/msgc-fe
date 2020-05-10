@@ -19,12 +19,6 @@ const setPage = (state, page) => {
 const deleteEmails = (state, ids) => {
   const newEmails = state.get('emails').filter((email) => !ids.includes(email.get('id')));
   return state.set('emails', newEmails);
-
-  // return state.withMutations(state => {
-  //   ids.forEach(id => state.deleteIn(['emails', id]));
-  //   debugger
-  //   return state;
-  // });
 };
 
 const reset = () => initialState;

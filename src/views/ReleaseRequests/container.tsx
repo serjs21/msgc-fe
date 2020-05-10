@@ -19,6 +19,7 @@ const ReleaseRequests = ({fetchPage, emails, storedPages, onReset, updateStatus,
   const [query, setQuery] = useState(undefined);
   const [filter, setFilter] = useState(null);
   const [allowedActions, setAllowedActions] = useState(false);
+  const [emailsCollection, setEmailsCollection] = useState([]);
 
   const onScroll = () => {
     if (page === storedPages) {
@@ -55,8 +56,12 @@ const ReleaseRequests = ({fetchPage, emails, storedPages, onReset, updateStatus,
     if (page === 0) {
       setPage(1);
       selectEmail([]);
+      setEmailsCollection([]);
     }
-    else fetchPage(page, filter, query).then(() => setLoading(false))
+    else fetchPage(page, filter, query).then((emails) => {
+      setLoading(false);
+      setEmailsCollection([].concat(emailsCollection, emails));
+    })
   }, [page])
 
   useEffect(() => {
@@ -73,7 +78,7 @@ const ReleaseRequests = ({fetchPage, emails, storedPages, onReset, updateStatus,
                actionsAllowed={allowedActions}/>
     {loading && page === 1 ? <Loading/> :
       <>
-      <EmailsTable emails={Object.values(emails)} onSelect={selectEmail} className='emails-table' onScroll={onScroll}/>
+      <EmailsTable emails={emailsCollection} onSelect={selectEmail} className='emails-table' onScroll={onScroll}/>
       <div className='email-table-details'>
       {selectedEmails.length ? <Details email={selectedEmails}/> : null}
       </div>

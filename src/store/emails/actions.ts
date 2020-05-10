@@ -37,8 +37,10 @@ export const fetch = (page: number, filter?: string | null, query?:string | null
     if (emails.length) {
       dispatch(storeEmails(emails));
       dispatch(setPage(page));
+      return emails;
     }
   }
+  return [];
 };
 
 export const requestUpdateStatus = (emails, status: 'approved' | 'rejected') => async (dispatch) => {
